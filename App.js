@@ -27,12 +27,12 @@ const App = () => {
                     width:160,
                     borderRadius:10,
                     backgroundColor : "white",
-                    opacity:.7,
+                    opacity:.9,
                     marginLeft :50,
                     marginRight:50,
                     marginTop :20
                 }}>
-                  <Text style={styles.buttonText}>get sus</Text>
+                  <Text style={styles.buttonText}>shop</Text>
           </TouchableHighlight> 
     </View>
     </View>

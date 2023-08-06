@@ -3,37 +3,28 @@ import { View, Image, StyleSheet, SafeAreaView } from 'react-native';
 import React, {useState} from 'react'
 
 
-
-
-
 const SusVideo = () => {
     
     const [shouldShow, setShouldShow] = useState(true);
-
     return (
 
         <SafeAreaView>
         <View style={styles.container}>
             {shouldShow ? (
                 <Video  
-                source={{uri: 'https://susaf.s3.us-west-1.amazonaws.com/static/video/susaf.mp4'}}          // the video file
+                source={{uri: 'https://susaf.s3.us-west-1.amazonaws.com/static/susvid.mp4'}}        
                 paused={false}
                 style={styles.backgroundVideo}  
-                poster={'/Users/jordonmarchesano/Desktop/susMobile/components/susaf.jpg'}
                 onEnd={() => setShouldShow(!shouldShow)}
                 />
-                
             ) : <View style={styles.imgView}> 
             <Image
             source={{uri: "https://susaf.s3.us-west-1.amazonaws.com/static/sus+af.png"}}
             style={styles.image}
             />
             </View>
-
             }
-      
         </View>
-
         </SafeAreaView>
     )
 }
