@@ -4,7 +4,6 @@ import CreateCard from '../components/CreateCard';
 
 const SkateboardScreen = (props) =>{
     const [skateboard, setSkateboard] = useState([]);
-    const {onAdd, cartItems} = props;
     useEffect(()=>{
     skateboards()
     },[]) 
@@ -15,7 +14,22 @@ const SkateboardScreen = (props) =>{
 }
 console.log(skateboard)
 return(
-    <CreateCard/>
+    <View>
+        {skateboard.map((product)=>{
+            return(
+                <CreateCard
+                key={product._id}
+                name = {product.name}
+                img = {product.img}
+                price = {product.price}
+                cartItems = {props.cartItems}
+                onAdd ={props.onAdd}
+                product={product} 
+                />
+            )}
+        )}
+    </View>
+   
 )
 }
 
