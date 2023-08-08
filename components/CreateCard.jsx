@@ -6,7 +6,8 @@ import {Card, Button , Title ,Paragraph } from 'react-native-paper';
 
 
 const CreateCard = (props) => {
-      
+
+    const {cartItems, name, img, product, price} = props;
     const [sizeSelector, setSelector] = useState("small");
     const [buttonText, setButtonText] = useState("Add");
     const initialState = "Add";
@@ -23,10 +24,10 @@ const CreateCard = (props) => {
     
     const cartQty = (productId,size) =>{
         let cartItemsQty = 0;
-        for (let i = 0; i < props.cartItems.length; i++){
-            if ( productId === props.cartItems[i].item._id && size === props.cartItems[i].size ){
-                cartItemsQty = cartItemsQty + props.cartItems[i].quantity;
-                console.log(props.name, "in cart", cartItemsQty);
+        for (let i = 0; i < cartItems.length; i++){
+            if ( productId === cartItems[i].item._id && size === cartItems[i].size ){
+                cartItemsQty = cartItemsQty + cartItems[i].quantity;
+                console.log(name, "in cart", cartItemsQty);
             }
         } return(cartItemsQty);
     }
@@ -44,26 +45,26 @@ const CreateCard = (props) => {
     
     let cartAmount = 0;
     let stockAmount = 0;
-    stockAmount = props.product.sizes[sizeSelector].quantity
-    cartAmount = cartQty(props.product._id,sizeSelector);
+    stockAmount = product.sizes[sizeSelector].quantity
+    cartAmount = cartQty(product._id,sizeSelector);
     const rows = [];
-    rows.push(<option value={"small"} key={"small"}>{props.product.sizes.small.size}</option>)
-    rows.push(<option value={"medium"} key={"medium"}>{props.product.sizes.medium.size}</option>)
-    rows.push(<option value={"large"} key={"large"}>{props.product.sizes.large.size}</option>)
+    rows.push(<option value={"small"} key={"small"}>{product.sizes.small.size}</option>)
+    rows.push(<option value={"medium"} key={"medium"}>{product.sizes.medium.size}</option>)
+    rows.push(<option value={"large"} key={"large"}>{product.sizes.large.size}</option>)
     
     return(
          
         <Card style={Styles.container}>
         <Card.Content>
-            <Title>{props.name}</Title>
+            <Title>{name}</Title>
         </Card.Content>
-        <Card.Cover source={{ uri: props.img }} />
+        <Card.Cover source={{ uri: img }} />
        <Card.Content>
         <Text>{props.price}</Text>
         </Card.Content>
         <Card.Actions>
           <Button
-          onPress={() => handleAddToCart(props.product)}
+          onPress={() => handleAddToCart(product)}
           >Add To Cart</Button>
         </Card.Actions>
       </Card>
