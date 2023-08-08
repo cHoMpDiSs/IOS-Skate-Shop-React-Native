@@ -55,12 +55,12 @@ const CreateCard = (props) => {
     return(
          
         <Card style={Styles.container}>
+            <Text style={Styles.titleText}>{name}</Text>
         <Card.Content>
-            <Title>{name}</Title>
         </Card.Content>
-        <Card.Cover source={{ uri: img }} />
+        <Card.Cover style={Styles.image}source={{ uri: img }} />
        <Card.Content>
-        <Text>{props.price}</Text>
+        <View style={Styles.pickerContainer}>
         <Picker
         selectedValue={sizeSelector}
         onValueChange={(itemValue, itemIndex) =>
@@ -70,8 +70,10 @@ const CreateCard = (props) => {
             <Picker.Item label={"medium"} value={"medium"} />
             <Picker.Item label={"large"} value={"large"} />
         </Picker>
+        </View>
         </Card.Content>
         <Card.Actions>
+        <Text>${props.price}</Text>
           <Button
           onPress={() => handleAddToCart(product)}
           >Add To Cart</Button>
@@ -84,7 +86,25 @@ export default CreateCard;
   
 const Styles = StyleSheet.create({
     container :{
-        alignContent:'center',
-        margin:37
+        backgroundColor:'white',
+        alignItems: 'center',
+        textAlign:'center',
+        flex: 1,
+        paddingTop:10,
+        paddingBottom:10,
+        margin:37,
+        
+    },
+    titleText:{
+        textAlign:'center',
+        paddingBottom:6
+    },
+    image:{
+        alignSelf:'center',
+        width:200,
+        height:210
+    },
+    pickerContainer:{
+        paddingTop:0
     }
 })

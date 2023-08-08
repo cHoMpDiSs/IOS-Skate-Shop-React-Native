@@ -9,8 +9,17 @@ const MainScreen = ({navigation}) => {
           <Button
           title="skateboards" 
           onPress={() => navigation.navigate('Skateboards')}
-          
-          >SKATEBOARDS</Button>
+          >Skateboards</Button>
+
+          <Button
+          title="pants" 
+          onPress={() => navigation.navigate('Pants')}
+          >Pants</Button>
+
+          <Button
+          title="shirts" 
+          onPress={() => navigation.navigate('Shirts')}
+          >Shirts</Button>
      
         </View>
       );

@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { View, StyleSheet, Text, Image, ImageBackground, TouchableHighlight } from 'react-native';
+import { View, ScrollView } from 'react-native';
 import CreateCard from '../components/CreateCard';
 
 const SkateboardScreen = (props) =>{
@@ -15,6 +15,7 @@ const SkateboardScreen = (props) =>{
 console.log(skateboard)
 return(
     <View>
+        <ScrollView>
         {skateboard.map((product)=>{
             return(
                 <CreateCard
@@ -28,6 +29,7 @@ return(
                 />
             )}
         )}
+        </ScrollView>
     </View>
    
 )

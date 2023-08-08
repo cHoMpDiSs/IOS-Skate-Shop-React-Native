@@ -4,6 +4,8 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import SusVideo from './components/SusVideo';
 import SkateboardScreen from './screens/SkateboardsScreen';
+import PantsScreen from './screens/PantsScreen';
+import ShirtsScreen from './screens/ShirtsScreen';
 import MainScreen from './screens/MainScreen';
 
 
@@ -134,6 +136,12 @@ const checkOut = () => {
         </Stack.Screen>
         <Stack.Screen name="Skateboards">
           {(props) => <SkateboardScreen {...props} cartItems={cartItems} onAdd={onAdd}/>}
+          </Stack.Screen>
+          <Stack.Screen name="Pants">
+          {(props) => <PantsScreen {...props} cartItems={cartItems} onAdd={onAdd}/>}
+          </Stack.Screen>
+          <Stack.Screen name="Shirts">
+          {(props) => <ShirtsScreen {...props} cartItems={cartItems} onAdd={onAdd}/>}
           </Stack.Screen>
       </Stack.Navigator>
     </NavigationContainer>

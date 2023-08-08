@@ -1,5 +1,5 @@
 import Video from 'react-native-video';
-import { View, Image, StyleSheet, SafeAreaView } from 'react-native';
+import { View, Image, SafeAreaView, StyleSheet } from 'react-native';
 import React, {useState} from 'react'
 
 
@@ -37,8 +37,8 @@ const styles = StyleSheet.create({
       left: 0,
       bottom: 0,
       right: 0,
-      height: 400,
-      width: 400
+      height: 500,
+      width: 500
     },
     imgView: {
         marginTop:250,
@@ -52,9 +52,10 @@ const styles = StyleSheet.create({
         resizeMode: 'contain'
     },
     container: {
-      justifyContent: 'center',
-      alignItems: 'center',
-      flex: 1
+        bottom:100,
+        justifyContent: 'center',
+        alignItems: 'center',
+        flex: 1
     }
   })
 
