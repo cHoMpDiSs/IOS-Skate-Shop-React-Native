@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import { Text ,View, StyleSheet } from 'react-native';
 import {Card, Button , Title ,Paragraph } from 'react-native-paper';
-  
+import {Picker} from '@react-native-picker/picker';
 
 
 
@@ -61,6 +61,15 @@ const CreateCard = (props) => {
         <Card.Cover source={{ uri: img }} />
        <Card.Content>
         <Text>{props.price}</Text>
+        <Picker
+        selectedValue={sizeSelector}
+        onValueChange={(itemValue, itemIndex) =>
+            setSelector(itemValue)
+        }>
+            <Picker.Item label={"small"} value={"small"} />
+            <Picker.Item label={"medium"} value={"medium"} />
+            <Picker.Item label={"large"} value={"large"} />
+        </Picker>
         </Card.Content>
         <Card.Actions>
           <Button
