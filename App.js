@@ -1,16 +1,18 @@
 import React, {useState} from 'react';
 import { View, StyleSheet, Text, Button, ImageBackground, TouchableHighlight } from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {createNativeTabNavigator} from '@react-navigation/native-Tab';
 import SusVideo from './components/SusVideo';
 import SkateboardScreen from './screens/SkateboardsScreen';
 import PantsScreen from './screens/PantsScreen';
 import ShirtsScreen from './screens/ShirtsScreen';
 import MainScreen from './screens/MainScreen';
 import CartScreen from './screens/CartScreen';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+
 
 const image = {uri:"https://susaf.s3.us-west-1.amazonaws.com/static/la.jpeg"};
-const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
 
 
 const HomeScreen = ({navigation}) => {
@@ -19,20 +21,7 @@ const HomeScreen = ({navigation}) => {
     <View style={styles.container}>
         <SusVideo/>
         <View style={styles.buttonContainer}>
-      <TouchableHighlight 
-      onPress={() => navigation.navigate('home')}
-                style ={{ 
-                    height: 70,
-                    width:160,
-                    borderRadius:10,
-                    backgroundColor : "white",
-                    opacity:.9,
-                    marginLeft :50,
-                    marginRight:50,
-                    marginTop :20
-                }}>
-                  <Text style={styles.buttonText}>shop</Text>
-          </TouchableHighlight> 
+      
           </View>
     </View>
     </ImageBackground>
@@ -57,7 +46,7 @@ const App = () => {
             console.log("NEW ARR", newArr[i].item._id)
             console.log("PRODUCT ID", item._id)
             newArr[i].quantity ++
-            console.log(newArr[i].quantity, "NEW ARRRAYYYYYY Quantity")
+            console.log(newArr[i].quantity, "NEW ARR Quantity")
         }};
         setCartItems(newArr);
         console.log(cartItems + " adding more cart items.");
@@ -127,26 +116,23 @@ const checkOut = () => {
   return (
 
     <NavigationContainer>
-      <Stack.Navigator initialRouteName='Main'>
-        <Stack.Screen name="sus af" >
+      <Tab.Navigator initialRouteName='Main'>
+        <Tab.Screen name="sus af" >
         {(props) => <HomeScreen {...props} cartItems={cartItems} onAdd={onAdd}/>}
-          </Stack.Screen>
-        <Stack.Screen name="home" >
-        {(props) => <MainScreen {...props} cartItems={cartItems} onAdd={onAdd}/>}
-        </Stack.Screen>
-        <Stack.Screen name="Skateboards">
+          </Tab.Screen>
+        <Tab.Screen name="skateboards">
           {(props) => <SkateboardScreen {...props} cartItems={cartItems} onAdd={onAdd}/>}
-          </Stack.Screen>
-          <Stack.Screen name="Pants">
+          </Tab.Screen>
+          <Tab.Screen name="pants">
           {(props) => <PantsScreen {...props} cartItems={cartItems} onAdd={onAdd}/>}
-          </Stack.Screen>
-          <Stack.Screen name="Shirts">
+          </Tab.Screen>
+          <Tab.Screen name="shirts">
           {(props) => <ShirtsScreen {...props} cartItems={cartItems} onAdd={onAdd}/>}
-          </Stack.Screen>
-          <Stack.Screen name="Cart">
+          </Tab.Screen>
+          <Tab.Screen name="cart">
           {(props) => <CartScreen {...props} cartItems={cartItems} onRemove={onRemove} onAdd={onAdd}/>}
-          </Stack.Screen>
-      </Stack.Navigator>
+          </Tab.Screen>
+      </Tab.Navigator>
     </NavigationContainer>
   );
 };
@@ -172,8 +158,6 @@ const styles = StyleSheet.create({
     color:'black',
     textAlign: 'center',
     
- 
-   
   }
 
 });

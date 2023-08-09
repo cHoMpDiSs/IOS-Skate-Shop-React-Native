@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
       width: 500
     },
     imgView: {
-        marginTop:250,
+        marginTop:375,
         width:250,
         height:250
     },
