@@ -1,11 +1,12 @@
 import React, {useState, useEffect} from 'react';
 import { View, ScrollView, Button, Text, StyleSheet, TouchableHighlight} from 'react-native';
 import CartCard from '../components/CartCard';
-
-
+import OrderScreen from './OrderScreen';
+import { useNavigation } from '@react-navigation/native';
 
 const CartScreen = (props) => {
     const {cartItems, onAdd, onRemove, checkOut} = props;
+    const navigation = useNavigation();
 
     console.log("CART ITEMS IN CART", cartItems)
     let total = 0
@@ -19,12 +20,14 @@ const CartScreen = (props) => {
             finalTotal = total + tax
         } 
     }
-   
+
+
+  
     return(
             <View style={Styles.container}>
             <ScrollView>
             {calculateTotal()}
-            {cartItems.length === 0 && <Text>Cart is empty</Text>}
+            {cartItems.length === 0 && <Text style={Styles.empty}>cart is empty</Text>}
             {cartItems.map((product) => {
                 return(
             <CartCard
@@ -47,7 +50,7 @@ const CartScreen = (props) => {
         {cartItems.length !== 0 && 
         <View style={Styles.btnContainer}>
         <TouchableHighlight 
-        onPress={() => checkOut()}
+        onPress={() => {checkOut();navigation.navigate('order')}}
                   style ={{ 
                       height: 50,
                       width:140,
@@ -60,10 +63,12 @@ const CartScreen = (props) => {
                   }}>
                     <Text style={Styles.btnText}>Check Out</Text></TouchableHighlight>
                     </View>}
+                   
         </View>
                     
-}
+}    
         </ScrollView>
+       
         </View>
 
 
@@ -75,6 +80,11 @@ const Styles = StyleSheet.create({
         margin:15
         
         
+    },
+    empty:{
+        textAlign:'center',
+        paddingTop:50,
+        fontSize:20
     },
     btnContainer : {
         alignItems: 'center'
