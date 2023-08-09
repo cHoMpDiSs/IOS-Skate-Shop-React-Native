@@ -7,7 +7,7 @@ import SkateboardScreen from './screens/SkateboardsScreen';
 import PantsScreen from './screens/PantsScreen';
 import ShirtsScreen from './screens/ShirtsScreen';
 import MainScreen from './screens/MainScreen';
-
+import CartScreen from './screens/CartScreen';
 
 const image = {uri:"https://susaf.s3.us-west-1.amazonaws.com/static/la.jpeg"};
 const Stack = createNativeStackNavigator();
@@ -142,6 +142,9 @@ const checkOut = () => {
           </Stack.Screen>
           <Stack.Screen name="Shirts">
           {(props) => <ShirtsScreen {...props} cartItems={cartItems} onAdd={onAdd}/>}
+          </Stack.Screen>
+          <Stack.Screen name="Cart">
+          {(props) => <CartScreen {...props} cartItems={cartItems} onRemove={onRemove} onAdd={onAdd}/>}
           </Stack.Screen>
       </Stack.Navigator>
     </NavigationContainer>

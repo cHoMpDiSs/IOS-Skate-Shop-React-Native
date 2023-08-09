@@ -7,6 +7,10 @@ const MainScreen = ({navigation}) => {
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
           <Text>Home Screen</Text>
           <Button
+          title="cart" 
+          onPress={() => navigation.navigate('Cart')}
+          >Cart</Button>
+          <Button
           title="skateboards" 
           onPress={() => navigation.navigate('Skateboards')}
           >Skateboards</Button>

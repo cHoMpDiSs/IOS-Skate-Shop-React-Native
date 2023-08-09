@@ -82,7 +82,7 @@ const CreateCard = (props) => {
          
     )
 }
-export default CreateCard;
+
   
 const Styles = StyleSheet.create({
     container :{
@@ -108,3 +108,5 @@ const Styles = StyleSheet.create({
         paddingTop:0
     }
 })
+
+export default CreateCard;
