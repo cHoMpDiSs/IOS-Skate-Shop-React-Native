@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { View, StyleSheet, Text, Image, ImageBackground, TouchableHighlight, Button } from 'react-native';
+import { View, StyleSheet, Text, Image } from 'react-native';
 
 
 
@@ -33,20 +33,55 @@ const OrderScreen = () => {
         
       
         return (
-            
-               <View>
+            <View style={styles.container}>
+            <View style={styles.imgView}> 
             <Image
             source={{uri: "https://susaf.s3.us-west-1.amazonaws.com/static/sus+af.png"}}
             style={styles.image}
             />
-                <Text>Thank you for your order</Text>
-                <Text>order number {orderNumber}</Text>
+                <View style={styles.textContainer}>
+                    <Text>Thank you for your order</Text>
+                    <Text>order number {orderNumber}</Text>
+                </View>
+               </View>
                </View>
             
         )
       
 
 }
+
+const styles = StyleSheet.create({
+
+
+    image:{
+        flex: 1,
+        width: null,
+        height: null,
+        resizeMode: 'contain'
+    }, 
+    imgView: {
+        marginTop:100,
+        width:250,
+        height:250,
+       
+    },
+    container: {
+        bottom:100,
+        justifyContent: 'center',
+        alignItems: 'center',
+        flex: 1
+    }, textContainer: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        textAlign:'center',
+        
+
+    }
+
+
+
+})
 
 
 export default OrderScreen;
