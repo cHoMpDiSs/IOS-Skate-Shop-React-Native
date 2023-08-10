@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
 import { Text ,View, StyleSheet } from 'react-native';
-import {Card, Button , Title ,Paragraph } from 'react-native-paper';
+import {Card, Button } from 'react-native-paper';
 import {Picker} from '@react-native-picker/picker';
 
 

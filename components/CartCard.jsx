@@ -2,40 +2,65 @@ import React from 'react';
 import {View, StyleSheet, Text} from 'react-native';
 import {Card, Button } from 'react-native-paper';
 
+
 const CartCard = (props) => {
     const {product, onAdd, onRemove, img } = props;
     return(
         <Card style={Styles.container}>
         <Text style={Styles.titleText}>{product.item.name}</Text>
     <Card.Content>
-    </Card.Content>
+    
     <Card.Cover style={Styles.image}source={{ uri: img }} />
 
-    <Card.Actions>
-    <Text>${product.price}</Text>
+
+    </Card.Content>
+ 
     {product.quantity < product.item.sizes[product.size].quantity ?
-    <View>
+    
+   
+      
+      <View style={Styles.buttonContainer}>
+
+       
+      <Card.Actions>
       <Button
       title='add'
       onPress={() => onAdd(product.item,product.size)}
-      ><Text>+</Text></Button>
+      >+</Button>
+      </Card.Actions>
+      
+       
+       
+
+        <Card.Actions>
         <Button
         title='remove'
       onPress={() => onRemove(product.item,product.size)}
-      ><Text>-</Text></Button>
+      >-</Button></Card.Actions>
+      
+       
       </View>
-      : <View>
+      : 
+         <View style={Styles.buttonContainer}>
+          <Card.Actions>
          <Button
         title='remove'
       onPress={() => onRemove(product.item,product.size)}
-      ><Text>-</Text></Button>
-      <Text>you have the maximum {product.name} available.</Text>
-      </View>}
-    </Card.Actions>
-  </Card>
-    )
+      >-</Button>
+      </Card.Actions>
 
+      <Text>you have the maximum {product.name} available.</Text>
+      </View>
+      
 }
+    
+  
+   <Text>{product.quantity} X ${product.item.price}</Text>
+   
+  </Card>
+)}
+
+
 const Styles = StyleSheet.create({
     container :{
         backgroundColor:'white',
@@ -46,6 +71,31 @@ const Styles = StyleSheet.create({
         paddingTop:10,
         paddingBottom:10,
         margin:37,        
+    },
+    buttonContainer:{
+      flexDirection:'row',
+      paddingLeft:25
+     
+    },
+
+
+    cardButtons:{
+      
+      alignItems:'center',
+      backgroundColor:'black',
+      alignContent: 'center',
+      borderRadius:5,
+      marginRight:2,
+      width:35,
+      height:35,
+      borderWidth:1,
+      borderColor:'black'
+    },
+
+    buttonText:{
+      fontSize:20,
+      textAlign:'center',
+      color:'white'
     },
     titleText:{
         textAlign:'center',

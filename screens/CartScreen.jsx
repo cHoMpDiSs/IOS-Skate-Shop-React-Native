@@ -41,12 +41,14 @@ const CartScreen = (props) => {
              }
             )}
             
-            {total !== 0 &&  <View>
-            <Text>${total.toFixed(2)} </Text>
-            <Text>Tax ${tax.toFixed(2)}</Text>
-            <Text>Total:${finalTotal.toFixed(2)}</Text>
-            
-        
+            {total !== 0 &&  
+            <View>
+                <View style={Styles.checkOutBox}>
+            <Text style={Styles.checkOutText}>${total.toFixed(2)} </Text>
+            <Text style={Styles.checkOutText}>Tax ${tax.toFixed(2)}</Text>
+            <Text style={Styles.checkOutText}>Total:${finalTotal.toFixed(2)}</Text>
+            </View>
+             
         {cartItems.length !== 0 && 
         <View style={Styles.btnContainer}>
         <TouchableHighlight 
@@ -80,6 +82,12 @@ const Styles = StyleSheet.create({
         margin:15
         
         
+    },
+    checkOutText:{
+        textAlign:'right'
+    },
+    checkOutBox:{
+        paddingRight:50
     },
     empty:{
         textAlign:'center',

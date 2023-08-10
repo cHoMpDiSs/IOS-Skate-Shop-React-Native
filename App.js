@@ -122,6 +122,7 @@ const checkOut = () => {
     <Tab.Navigator initialRouteName='Main'>
         <Tab.Screen name="sus af"
         options={{
+          headerShown: false,
           tabBarLabel:'sus af',
           tabBarIcon:({color,size}) =>(
             <FontAwesomeIcon icon={faHouse}/>
@@ -132,6 +133,7 @@ const checkOut = () => {
           </Tab.Screen>
         <Tab.Screen name="skateboards"
         options={{
+          headerShown: false,
           tabBarLabel:'skateboards',
           tabBarIcon:({color,size}) =>(
             <FontAwesomeIcon icon={faPersonSnowboarding}/>
@@ -142,6 +144,7 @@ const checkOut = () => {
           </Tab.Screen>
           <Tab.Screen name="pants"
           options={{
+            headerShown: false,
             tabBarLabel:'pants',
             tabBarIcon:({color,size}) =>(
               <FontAwesomeIcon icon={faPerson}/>
@@ -151,6 +154,7 @@ const checkOut = () => {
           </Tab.Screen>
           <Tab.Screen name="shirts"
             options={{
+              headerShown: false,
               tabBarLabel:'shirts',
               tabBarIcon:({color,size}) =>(
                 <FontAwesomeIcon icon={faShirt} />
@@ -160,6 +164,7 @@ const checkOut = () => {
           </Tab.Screen>
           <Tab.Screen name="cart"
           options={{
+            headerShown: false,
             tabBarLabel:'cart',
             tabBarIcon:({color,size}) =>(
               <FontAwesomeIcon icon={faCartShopping}/>
@@ -186,6 +191,7 @@ const checkOut = () => {
     <Stack.Screen
     name='order'
     component={OrderScreen}
+    options={{ headerShown: false }}
     />
     </Stack.Navigator>
         
