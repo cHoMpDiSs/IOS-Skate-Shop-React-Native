@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { View, ScrollView } from 'react-native';
+import { View, ScrollView, StyleSheet } from 'react-native';
 import CreateCard from '../components/CreateCard';
 
 const PantsScreen = (props) =>{
@@ -14,8 +14,13 @@ const PantsScreen = (props) =>{
 }
 console.log(pant)
 return(
-    <View>
-        <ScrollView>
+    <View style={Styles.container}>
+        <ScrollView 
+        ref={(ref => this.scrollViewRef = ref)}
+        onScroll={event => { this.yOffset = event.nativeEvent.contentOffset.y }}
+        onContentSizeChange={(contentWidth, contentHeight) => { this.scrollViewRef.scrollTo({ x: 0, y: this.yOffset, animated: false }) }}
+        scrollEventThrottle={16}
+        >
         {pant.map((product)=>{
             return(
                 <CreateCard
@@ -35,5 +40,11 @@ return(
 )
 }
 
+const Styles = StyleSheet.create({
+    container :{
+        paddingTop:40
+    }
+
+})
 
 export default PantsScreen;

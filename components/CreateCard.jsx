@@ -9,18 +9,7 @@ const CreateCard = (props) => {
 
     const {cartItems, name, img, product, price} = props;
     const [sizeSelector, setSelector] = useState("small");
-    const [buttonText, setButtonText] = useState("Add");
-    const initialState = "Add";
-    
-    useEffect(() => {
-        if(buttonText !== initialState){
-            setTimeout(() => setButtonText(initialState), [1000])
-        }
-    },[buttonText])
-    
-    const changeText = (text) => {
-        setButtonText(text);
-    }
+
     
     const cartQty = (productId,size) =>{
         let cartItemsQty = 0;
@@ -32,10 +21,7 @@ const CreateCard = (props) => {
         } return(cartItemsQty);
     }
     
-    const handleSelectorChange = (e) => {
-        setSelector(e.target.value);
-        };
-    
+
     const handleAddToCart = (productProps) => {
         console.log("PRODUCT in handle add to cart", productProps)
         props.onAdd(productProps, sizeSelector);
@@ -47,10 +33,6 @@ const CreateCard = (props) => {
     let stockAmount = 0;
     stockAmount = product.sizes[sizeSelector].quantity
     cartAmount = cartQty(product._id,sizeSelector);
-    const rows = [];
-    rows.push(<option value={"small"} key={"small"}>{product.sizes.small.size}</option>)
-    rows.push(<option value={"medium"} key={"medium"}>{product.sizes.medium.size}</option>)
-    rows.push(<option value={"large"} key={"large"}>{product.sizes.large.size}</option>)
     
     return(
          
@@ -75,8 +57,9 @@ const CreateCard = (props) => {
         <Card.Actions>
         <Text>${props.price}</Text>
           <Button
+          style={Styles.btnText}
           onPress={() => handleAddToCart(product)}
-          >Add To Cart</Button>
+          >Add to cart</Button>
         </Card.Actions>
       </Card>
          
@@ -94,6 +77,9 @@ const Styles = StyleSheet.create({
         paddingBottom:10,
         margin:37,
         
+    },
+    btnText:{
+        backgroundColor:'black'
     },
     titleText:{
         textAlign:'center',

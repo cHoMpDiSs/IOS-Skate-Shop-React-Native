@@ -25,7 +25,11 @@ const CartScreen = (props) => {
   
     return(
             <View style={Styles.container}>
-            <ScrollView>
+                <ScrollView 
+            ref={(ref => this.scrollViewRef = ref)}
+            onScroll={event => { this.yOffset = event.nativeEvent.contentOffset.y }}
+            onContentSizeChange={(contentWidth, contentHeight) => { this.scrollViewRef.scrollTo({ x: 0, y: this.yOffset, animated: false }) }}
+                >
             {calculateTotal()}
             {cartItems.length === 0 && <Text style={Styles.empty}>cart is empty</Text>}
             {cartItems.map((product) => {
@@ -79,7 +83,8 @@ const CartScreen = (props) => {
 
 const Styles = StyleSheet.create({
     container :{
-        margin:15
+        margin:15,
+        paddingTop:40
         
         
     },
