@@ -4,26 +4,26 @@ import CreateCard from '../components/CreateCard';
 
 const SkateboardScreen = (props) =>{
     const [skateboard, setSkateboard] = useState([]);
-    useEffect(()=>{
-    skateboards()
-    },[]) 
+  
    
     const skateboards = async () =>{
     const response = await fetch('https://susaf-b1c07c666ead.herokuapp.com/api/skateboards');
     setSkateboard(await response.json())
 }
 
-
+useEffect(()=>{
+    skateboards()
+    },[]) 
 
 console.log(skateboard)
 return(
     <View style={Styles.container}>
         <ScrollView 
        
-       ref={(ref => this.scrollViewRef = ref)}
-       onScroll={event => { this.yOffset = event.nativeEvent.contentOffset.y }}
-       onContentSizeChange={(contentWidth, contentHeight) => { this.scrollViewRef.scrollTo({ x: 0, y: this.yOffset, animated: false }) }}
-       scrollEventThrottle={16}
+    //    ref={(ref => this.scrollViewRef = ref)}
+    //    onScroll={event => { this.yOffset = event.nativeEvent.contentOffset.y }}
+    //    onContentSizeChange={(contentWidth, contentHeight) => { this.scrollViewRef.scrollTo({ x: 0, y: this.yOffset, animated: false }) }}
+    //    scrollEventThrottle={16}
         >
         {skateboard.map((product)=>{
             return(

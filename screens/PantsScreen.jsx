@@ -4,22 +4,21 @@ import CreateCard from '../components/CreateCard';
 
 const PantsScreen = (props) =>{
     const [pant, setPants] = useState([]);
-    useEffect(()=>{
-    pants()
-    },[]) 
-   
+
     const pants = async () =>{
     const response = await fetch('https://susaf-b1c07c666ead.herokuapp.com/api/pants');
     setPants(await response.json())
 }
+
+useEffect(()=>{
+    pants()
+    },[]) 
+   
 console.log(pant)
 return(
     <View style={Styles.container}>
         <ScrollView 
-        ref={(ref => this.scrollViewRef = ref)}
-        onScroll={event => { this.yOffset = event.nativeEvent.contentOffset.y }}
-        onContentSizeChange={(contentWidth, contentHeight) => { this.scrollViewRef.scrollTo({ x: 0, y: this.yOffset, animated: false }) }}
-        scrollEventThrottle={16}
+   
         >
         {pant.map((product)=>{
             return(

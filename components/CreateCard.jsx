@@ -7,10 +7,24 @@ import {Picker} from '@react-native-picker/picker';
 
 const CreateCard = (props) => {
 
-    const {cartItems, name, img, product, price} = props;
+    const {cartItems, name, img, product} = props;
     const [sizeSelector, setSelector] = useState("small");
-
+    const [buttonText, setButtonText] = useState("Add to Cart");
+    const initialState = "Add to Cart";
     
+    useEffect(() => {
+        if (buttonText !== initialState) {
+          setTimeout(() => {
+            setButtonText(initialState);
+          }, 1000);
+        }
+      }, [buttonText]);
+    const changeText = (text) => {
+        setButtonText(text);
+    }
+
+
+
     const cartQty = (productId,size) =>{
         let cartItemsQty = 0;
         for (let i = 0; i < cartItems.length; i++){
@@ -27,7 +41,8 @@ const CreateCard = (props) => {
         props.onAdd(productProps, sizeSelector);
         
     };
-    
+
+  
     
     let cartAmount = 0;
     let stockAmount = 0;
@@ -58,8 +73,8 @@ const CreateCard = (props) => {
         <Text>${props.price}</Text>
           <Button
           style={Styles.btnText}
-          onPress={() => handleAddToCart(product)}
-          >Add to cart</Button>
+          onPress={() => {handleAddToCart(product);changeText("Added!")}}
+          >{buttonText}</Button>
         </Card.Actions>
       </Card>
          

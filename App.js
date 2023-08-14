@@ -9,7 +9,6 @@ import CartScreen from './screens/CartScreen';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { FontAwesomeIcon} from '@fortawesome/react-native-fontawesome'
 import { faCartShopping, faShirt, faPerson, faPersonSnowboarding, faHouse } from "@fortawesome/free-solid-svg-icons";
-import OrderScreen from './screens/OrderScreen';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 const image = {uri:"https://susaf.s3.us-west-1.amazonaws.com/static/la.jpeg"};
@@ -27,20 +26,16 @@ const HomeScreen = ({navigation}) => {
     </View>
     </ImageBackground>
   )
-
-
-
 }
 
 const App = () => {
-  const [shouldShow, setShouldShow] = useState(true);
-  const [checkOutItems, setCheckOutItems] = useState([]);
+
   const [cartItems, setCartItems] = useState([]);
 
 
   const onAdd = (item, size) =>{
     const exist = cartItems.find(x => x.item._id === item._id && x.size === size);
-      console.log(exist, "exist")
+      console.log(exist, "EXISTTTTT!!!!**************")
      if(exist && item.sizes[size].quantity >= 1 && exist.size === size ){
       let newArr = [...cartItems];
         for(let i = 0; i < newArr.length; i++){
@@ -48,7 +43,7 @@ const App = () => {
             console.log("NEW ARR", newArr[i].item._id)
             console.log("PRODUCT ID", item._id)
             newArr[i].quantity ++
-            console.log(newArr[i].quantity, "NEW ARR Quantity")
+            console.log(newArr[i].quantity, "NEW ARRRAYYYYYY Quantity")
         }};
         setCartItems(newArr);
         console.log(cartItems + " adding more cart items.");
@@ -112,90 +107,72 @@ const checkOut = () => {
         
     }
     
-    setCheckOutItems([])
+  
     setCartItems([])
     
   }
 
-  const TabBar = () =>  {
-    return (
-    <Tab.Navigator initialRouteName='Main'>
-        <Tab.Screen name="sus af"
-        options={{
-          headerShown: false,
-          tabBarLabel:'sus af',
-          tabBarIcon:({color,size}) =>(
-            <FontAwesomeIcon icon={faHouse}/>
-          )
-        }}
-        >
-        {(props) => <HomeScreen {...props} cartItems={cartItems} onAdd={onAdd}/>}
-          </Tab.Screen>
-        <Tab.Screen name="skateboards"
-        options={{
-          headerShown: false,
-          tabBarLabel:'skateboards',
-          tabBarIcon:({color,size}) =>(
-            <FontAwesomeIcon icon={faPersonSnowboarding}/>
-          )
-        }}
-        >
-          {(props) => <SkateboardScreen {...props} cartItems={cartItems} onAdd={onAdd}/>}
-          </Tab.Screen>
-          <Tab.Screen name="pants"
-          options={{
-            headerShown: false,
-            tabBarLabel:'pants',
-            tabBarIcon:({color,size}) =>(
-              <FontAwesomeIcon icon={faPerson}/>
-            )
-          }}>
-          {(props) => <PantsScreen {...props} cartItems={cartItems} onAdd={onAdd}/>}
-          </Tab.Screen>
-          <Tab.Screen name="shirts"
-            options={{
-              headerShown: false,
-              tabBarLabel:'shirts',
-              tabBarIcon:({color,size}) =>(
-                <FontAwesomeIcon icon={faShirt} />
-              )
-            }}>
-          {(props) => <ShirtsScreen {...props} cartItems={cartItems} onAdd={onAdd}/>}
-          </Tab.Screen>
-          <Tab.Screen name="cart"
-          options={{
-            headerShown: false,
-            tabBarLabel:'cart',
-            tabBarIcon:({color,size}) =>(
-              <FontAwesomeIcon icon={faCartShopping}/>
-            )
-          }}>
-          {(props) => <CartScreen {...props} cartItems={cartItems} checkOut={checkOut} onRemove={onRemove} onAdd={onAdd}/>}
-          </Tab.Screen>
-      </Tab.Navigator>  
-
-    )
-  }
 
 
 
   return (
 
-    <NavigationContainer>
-    <Stack.Navigator>
-      <Stack.Screen
-      name='sus'
-      component={TabBar}
-      options={{ headerShown: false }}
-      />
-    <Stack.Screen
-    name='order'
-    component={OrderScreen}
-    options={{ headerShown: false }}
-    />
-    </Stack.Navigator>
-        
-    </NavigationContainer>
+<NavigationContainer>
+    <Tab.Navigator initialRouteName='Main'>
+    <Tab.Screen name="sus af"
+    options={{
+      headerShown: false,
+      tabBarLabel:'sus af',
+      tabBarIcon:({color,size}) =>(
+        <FontAwesomeIcon icon={faHouse}/>
+      )
+    }}
+    >
+    {(props) => <HomeScreen {...props} cartItems={cartItems} onAdd={onAdd}/>}
+      </Tab.Screen>
+    <Tab.Screen name="skateboards"
+    options={{
+      headerShown: false,
+      tabBarLabel:'skateboards',
+      tabBarIcon:({color,size}) =>(
+        <FontAwesomeIcon icon={faPersonSnowboarding}/>
+      )
+    }}
+    >
+      {(props) => <SkateboardScreen {...props} cartItems={cartItems} onAdd={onAdd}/>}
+      </Tab.Screen>
+      <Tab.Screen name="pants"
+      options={{
+        headerShown: false,
+        tabBarLabel:'pants',
+        tabBarIcon:({color,size}) =>(
+          <FontAwesomeIcon icon={faPerson}/>
+        )
+      }}>
+      {(props) => <PantsScreen {...props} cartItems={cartItems} onAdd={onAdd}/>}
+      </Tab.Screen>
+      <Tab.Screen name="shirts"
+        options={{
+          headerShown: false,
+          tabBarLabel:'shirts',
+          tabBarIcon:({color,size}) =>(
+            <FontAwesomeIcon icon={faShirt} />
+          )
+        }}>
+      {(props) => <ShirtsScreen {...props} cartItems={cartItems} onAdd={onAdd}/>}
+      </Tab.Screen>
+      <Tab.Screen name="cart"
+      options={{
+        headerShown: false,
+        tabBarLabel:'cart',
+        tabBarIcon:({color,size}) =>(
+          <FontAwesomeIcon icon={faCartShopping}/>
+        )
+      }}>
+      {(props) => <CartScreen {...props} cartItems={cartItems} checkOut={checkOut} onRemove={onRemove} onAdd={onAdd}/>}
+      </Tab.Screen>
+  </Tab.Navigator>  
+  </NavigationContainer>
   );
 };
 

@@ -11,14 +11,11 @@ const CartCard = (props) => {
     <Card.Content>
     
     <Card.Cover style={Styles.image}source={{ uri: img }} />
-
-
     </Card.Content>
  
     {product.quantity < product.item.sizes[product.size].quantity ?
     
-   
-      
+  
       <View style={Styles.buttonContainer}>
 
        
@@ -29,9 +26,6 @@ const CartCard = (props) => {
       >+</Button>
       </Card.Actions>
       
-       
-       
-
         <Card.Actions>
         <Button
         title='remove'

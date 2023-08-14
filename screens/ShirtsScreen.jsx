@@ -4,22 +4,24 @@ import CreateCard from '../components/CreateCard';
 
 const ShirtsScreen = (props) =>{
     const [shirt, setShirts] = useState([]);
-    useEffect(()=>{
-    shirts()
-    },[]) 
+
    
     const shirts = async () =>{
     const response = await fetch('https://susaf-b1c07c666ead.herokuapp.com/api/shirts');
     setShirts(await response.json())
 }
+
+useEffect(()=>{
+    shirts()
+    },[]) 
 console.log(shirt)
 return(
     <View style={Styles.container}>
         <ScrollView 
-        ref={(ref => this.scrollViewRef = ref)}
-        onScroll={event => { this.yOffset = event.nativeEvent.contentOffset.y }}
-        onContentSizeChange={(contentWidth, contentHeight) => { this.scrollViewRef.scrollTo({ x: 0, y: this.yOffset, animated: false }) }}
-        scrollEventThrottle={16}
+        // ref={(ref => this.scrollViewRef = ref)}
+        // onScroll={event => { this.yOffset = event.nativeEvent.contentOffset.y }}
+        // onContentSizeChange={(contentWidth, contentHeight) => { this.scrollViewRef.scrollTo({ x: 0, y: this.yOffset, animated: false }) }}
+        // scrollEventThrottle={16}
         >
         {shirt.map((product)=>{
             return(

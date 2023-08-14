@@ -1,13 +1,14 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import { View, ScrollView, Button, Text, StyleSheet, TouchableHighlight} from 'react-native';
 import CartCard from '../components/CartCard';
-import OrderScreen from './OrderScreen';
-import { useNavigation } from '@react-navigation/native';
+import OrderCard from '../components/OrderCard';
+
 
 const CartScreen = (props) => {
     const {cartItems, onAdd, onRemove, checkOut} = props;
-    const navigation = useNavigation();
+    const [orderNotComplete, setOrder] = useState(true)
 
+  
     console.log("CART ITEMS IN CART", cartItems)
     let total = 0
     let tax = 0;
@@ -21,21 +22,23 @@ const CartScreen = (props) => {
         } 
     }
 
+   
 
+    const completeOrder = () =>{
+        setOrder(false)
+    }
   
     return(
+         orderNotComplete ?
+            (
             <View style={Styles.container}>
-                <ScrollView 
-            ref={(ref => this.scrollViewRef = ref)}
-            onScroll={event => { this.yOffset = event.nativeEvent.contentOffset.y }}
-            onContentSizeChange={(contentWidth, contentHeight) => { this.scrollViewRef.scrollTo({ x: 0, y: this.yOffset, animated: false }) }}
-                >
+                <ScrollView>
             {calculateTotal()}
             {cartItems.length === 0 && <Text style={Styles.empty}>cart is empty</Text>}
             {cartItems.map((product) => {
                 return(
             <CartCard
-            key={product.item._id}
+            key={product.item._id + product.size}
             product={product}
             img={product.item.img}
             onAdd={onAdd}
@@ -56,7 +59,7 @@ const CartScreen = (props) => {
         {cartItems.length !== 0 && 
         <View style={Styles.btnContainer}>
         <TouchableHighlight 
-        onPress={() => {checkOut();navigation.navigate('order')}}
+        onPress={() => {checkOut();completeOrder()}}
                   style ={{ 
                       height: 50,
                       width:140,
@@ -76,7 +79,9 @@ const CartScreen = (props) => {
         </ScrollView>
        
         </View>
-
+        )
+        : (<OrderCard/>
+        ) 
 
 
 )}
