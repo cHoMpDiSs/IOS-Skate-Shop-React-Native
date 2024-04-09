@@ -1,5 +1,5 @@
 This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`]!(https://github.com/react-native-community/cli).
-![boards](https://github.com/cHoMpDiSs/susMobile/assets/102629027/1a253d4a-617c-4c45-8397-5be5b49a1f10?s=100)
+![boards](https://github.com/cHoMpDiSs/susMobile/assets/102629027/1a253d4a-617c-4c45-8397-5be5b49a1f10?s=10)
 ![pants](https://github.com/cHoMpDiSs/susMobile/assets/102629027/40f52d9a-61f7-4c9a-b0f1-dddddbc832fe)
 ![cart](https://github.com/cHoMpDiSs/susMobile/assets/102629027/0593824c-7429-4624-b239-31b9905f59ab)
 
